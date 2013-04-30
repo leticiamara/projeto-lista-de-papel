@@ -101,6 +101,22 @@ public class TarefaDAO {
 		return tarefa;
 	}
 	
+	public Tarefa selectTarefaById(long idTarefa){
+		Session sessao = CriarTabelas.prepararSessao();
+		Transaction trasaction = sessao.beginTransaction();
+			
+		Criteria criteria = sessao.createCriteria(Tarefa.class);
+		criteria.add(Restrictions.eq("id", idTarefa));
+		
+		Tarefa tarefa = (Tarefa) criteria.uniqueResult();
+
+		trasaction.commit();
+		
+		sessao.close();
+		
+		return tarefa;
+	}
+	
 	public List<Tarefa> select() {
 		Session sessao = CriarTabelas.prepararSessao();
 		Transaction trasaction = sessao.beginTransaction();
