@@ -14,8 +14,8 @@ import br.ufc.quixada.es.DAOs.TarefaDAO;
 import br.ufc.quixada.es.modelo.Tarefa;
 import br.ufc.quixada.es.util.DataSerializer;
 
-@WebServlet("/ServletReceberJSON")
-public class ServletEnviarJSON extends HttpServlet {
+@WebServlet("/CarregarTarefas")
+public class CarregarTarefas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     	@Override
@@ -30,7 +30,6 @@ public class ServletEnviarJSON extends HttpServlet {
     		List<Tarefa> listaTarefas = dao.select();
 
     		String responseData = DataSerializer.getInstance().converterParaJson(listaTarefas);   
-
     		PrintWriter out = response.getWriter();
     		out.write(responseData);
     	}

@@ -12,7 +12,7 @@ public class ClassePrincipal {
 
 	public static void main(String[] args) {
 		
-		CriarTabelas.prepararSessao();
+		
 		CriarTabelas.reiniciaBanco();
 		
 		//Cadastrar uma tarefa
@@ -20,7 +20,7 @@ public class ClassePrincipal {
 		
 		Tarefa t = new Tarefa();
 		t.setNome("Fazer questoes de concorrencia"); 
-		t.setStatus("to");
+		//t.setStatus("to");
 		
 		
 		dao.insert(t);

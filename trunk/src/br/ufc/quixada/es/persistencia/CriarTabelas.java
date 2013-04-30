@@ -10,7 +10,6 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import br.ufc.quixada.es.modelo.Tarefa;
 
-
 public class CriarTabelas 
 {
 	public static void exportarEsquema(List<Class<? extends Object>> classes)
