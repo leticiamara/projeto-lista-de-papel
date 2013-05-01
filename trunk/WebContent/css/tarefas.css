@@ -1,11 +1,12 @@
 html {
 	/*font: 100%;*/
 	font-family: helvetica, colibri, tahoma, sans-serif;
-	color: #333;
+	color: #000;
 	background-image: url("../imagens/noise.png");
 	/*background-position: *;
 	background-repeat: *;*/
 	text-shadow: 0.1em 0.1em 0.1em #eee;
+	background-color: #B2CCFF;
 }
 
 div.todo {
@@ -19,7 +20,7 @@ div.todo {
 }
 
 div.todo h2 {
-	color: #c00;
+	color: #660066;
 }
 
 #tarefa, .tarefa-edit {
@@ -27,7 +28,7 @@ div.todo h2 {
 }
 
 #tarefa {
-	width: 33em;
+	width: 33em;	
 }
 
 .tarefa-edit {
@@ -35,7 +36,7 @@ div.todo h2 {
 }
 
 #tarefa-list {
-	width: 40em;
+	width: 40em;	
 	margin-top: 1em;
 }
 
@@ -58,10 +59,10 @@ div.todo h2 {
 }
 
 .tarefa-delete {
-	width: 16px;
-	height: 16px;
+	width: 25px;
+	height: 25px;
 
-	background-image: url("../imagens/delete.gif");
+	background-image: url("../imagens/delete12.png");
 	background-repeat: no-repeat;
 
 	display: block;
