@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+import javax.persistence.OneToOne;
 
 @Entity
 public class Tarefa {
@@ -15,6 +15,8 @@ public class Tarefa {
 	
 	@Column
 	private String nome;
+	@OneToOne
+	private Usuario usuario;
 	//private String status;
 	
 	public void setIdTarefa(long idTarefa) {
@@ -35,6 +37,12 @@ public class Tarefa {
 //	public String getStatus() {
 //		return status;
 //	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
 	
 	
 	

@@ -9,6 +9,7 @@ import org.hibernate.classic.Session;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import br.ufc.quixada.es.modelo.Tarefa;
+import br.ufc.quixada.es.modelo.Usuario;
 
 public class CriarTabelas 
 {
@@ -50,6 +51,7 @@ public class CriarTabelas
 		//classes.add(Usuario.class);
 		
 		classes.add(Tarefa.class);
+		classes.add(Usuario.class);
 		
 		return classes;
 	}
