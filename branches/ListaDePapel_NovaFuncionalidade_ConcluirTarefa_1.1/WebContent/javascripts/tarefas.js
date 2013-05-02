@@ -2,6 +2,7 @@ $(function() {
 
 	var server = "http://localhost:8080/ListaDePapel";
 	var $lastClicked;
+	var status
 
 	
 	//Marcar uma tarefa como concluida
@@ -9,10 +10,15 @@ $(function() {
 		$(this).parent('.tarefa-item')
 		.off('click')
 		.hide('slow', function() {
-			
+					
 			$this = $(this);
 			$.post(server + "/ConcluirTarefa",
-			{id: $this.children(".tarefa-id").text()});
+			{id: $this.children(".tarefa-id").text()})
+			.done(function(data){
+				status = data;
+				console.log("Status no onTarefaConcluir", status);
+				addTarefa($this.children(".tarefa-text").text(),$this.children(".tarefa-id").text(),status);
+			});
 			$(this).remove();
 		});
 		
@@ -32,7 +38,7 @@ $(function() {
 	}
 
 	//recebe um texto e adiciona a tarefa à lista.
-	function addTarefa(text,id) {
+	function addTarefa(text,id,status) {
 		//verifica se o id nao é undefined
 		id = id || 0;
 
@@ -48,7 +54,12 @@ $(function() {
 			.append($("<div />")
 			.addClass("tarefa-id")
 			.text(id));
-		$("#tarefa-list").append($tarefa);
+		console.log("Status no addTarefa", status);
+		if(status==="done"){
+			$("#tarefa-concluida-list").append($tarefa);
+		}else{
+			$("#tarefa-list").append($tarefa);
+		}
 		$(".tarefa-delete").click(onTarefaDeleteClick);
 		$(".tarefa-item").click(onTarefaItemClick);
 		$(".tarefa-concluir").click(onTarefaConcluirClick);
@@ -121,7 +132,7 @@ $(function() {
 		console.log("data: ", data);
 		for(var tarefa = 0; tarefa < data.length; tarefa++) {
 			console.log("ENTROU NO FOR", tarefa);
-		addTarefa(data[tarefa].nome,data[tarefa].idTarefa,data[tarefa.status]);
+		addTarefa(data[tarefa].nome,data[tarefa].idTarefa,data[tarefa].status);
 		}
 		});
 	}

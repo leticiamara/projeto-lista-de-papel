@@ -82,9 +82,10 @@ public class TarefaDAO {
 			
 		}
 		finally{
+
 			sessao.close();
 			return atualizar;
-		}
+		}		
 		
 	}
 
