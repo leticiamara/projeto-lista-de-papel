@@ -3,6 +3,21 @@ $(function() {
 	var server = "http://localhost:8080/ListaDePapel";
 	var $lastClicked;
 
+	
+	//Marcar uma tarefa como concluida
+	function onTarefaConcluirClick() {
+		$(this).parent('.tarefa-item')
+		.off('click')
+		.hide('slow', function() {
+			
+			$this = $(this);
+			$.post(server + "/ConcluirTarefa",
+			{id: $this.children(".tarefa-id").text()});
+			$(this).remove();
+		});
+		
+	}
+	
 	//remover item quando clicar na lixeira
 	function onTarefaDeleteClick() {
 		$(this).parent('.tarefa-item')
@@ -24,18 +39,19 @@ $(function() {
 		var $tarefa = $("<div />")
 		.addClass("tarefa-item")
 		.append($("<div />")
-			.addClass("tarefa-id")
-			.text(id))
-		.append($("<div />")
 			.addClass("tarefa-text")
 			.text(text))
 		.append($("<div />")
-			.addClass("tarefa-delete"))
+			.addClass("tarefa-concluir"))
 		.append($("<div />")
-			.addClass("clear"));
+			.addClass("tarefa-delete"))
+			.append($("<div />")
+			.addClass("tarefa-id")
+			.text(id));
 		$("#tarefa-list").append($tarefa);
 		$(".tarefa-delete").click(onTarefaDeleteClick);
 		$(".tarefa-item").click(onTarefaItemClick);
+		$(".tarefa-concluir").click(onTarefaConcluirClick);
 		
 		if(id === 0) {
 			var div = $($tarefa.children(".tarefa-id"));
@@ -71,8 +87,9 @@ $(function() {
 			var id = $lastClicked.children('.tarefa-id').text();
 			console.log("onTarefaClick  id: ", id);
 			
-			var content = "<input type='text' class='tarefa-edit' value='" +
-			text + "'>" + "<div class='tarefa-id'>" + id + "</div>\"";
+			var content = 
+			"<input type='text' class='tarefa-edit' value='" + text + "'>" +
+			"<div class='tarefa-id'>" + id + "</div>";
 			$lastClicked.html(content);
 			$(".tarefa-edit").keydown(onTarefaEditKeydown);
 		}
@@ -84,10 +101,11 @@ $(function() {
 		var text = $tarefa.children('.tarefa-edit').val();
 		
 		$tarefa.empty();
-		$tarefa.append("<div class='tarefa-id'>" + id + "</div>")
+		$tarefa
 		.append("<div class='tarefa-text'>" + text + "</div>")
+		.append("<div class='tarefa-concluir'></div>")
 		.append("<div class='tarefa-delete'></div>")
-		.append("<div class='clear'></div>");
+		.append("<div class='tarefa-id'>" + id + "</div>");
 		console.log("text: ",text);
 		console.log("id: ",id);
 		atualizarTarefa(text, id);
@@ -103,7 +121,7 @@ $(function() {
 		console.log("data: ", data);
 		for(var tarefa = 0; tarefa < data.length; tarefa++) {
 			console.log("ENTROU NO FOR", tarefa);
-		addTarefa(data[tarefa].nome,data[tarefa].idTarefa);
+		addTarefa(data[tarefa].nome,data[tarefa].idTarefa,data[tarefa.status]);
 		}
 		});
 	}
@@ -121,11 +139,15 @@ $(function() {
 					$div.text(data);
 				});
 	}
+	
 
 	//callbacks dos eventos
+	$(".tarefa-concluir").click(onTarefaConcluirClick);
 	$(".tarefa-delete").click(onTarefaDeleteClick);
 	$(".tarefa-item").click(onTarefaItemClick);
 	$("#tarefa").keydown(onTarefaKeydown);
+	
+	
 	carregarTarefas();
 
 
