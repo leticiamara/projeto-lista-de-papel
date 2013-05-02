@@ -4,7 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import br.ufc.quixada.es.util.ExcluirJSON;
 
 @Entity
 public class Tarefa {
@@ -16,7 +19,8 @@ public class Tarefa {
 	@Column
 	private String nome;
 	private String status;
-	@OneToOne
+	@ManyToOne
+	@ExcluirJSON   // vai remover
 	private Usuario usuario;
 	
 	
@@ -38,17 +42,10 @@ public class Tarefa {
 	public String getStatus() {
 		return status;
 	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 	public Usuario getUsuario() {
 		return usuario;
 	}
-	
-	
-	
-	
-	
-	
-	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 }

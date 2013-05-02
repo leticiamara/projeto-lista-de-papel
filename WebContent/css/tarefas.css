@@ -41,7 +41,7 @@ div.todo h2 {
 
 #tarefa {
         width: 28em;
-        text-align:center;      
+        text-align:left;      
         margin-left: 25px;
         margin-bottom: 15px;
 }
@@ -136,7 +136,7 @@ list-style:none;
 border:1px solid #c0c0c0;
 margin: auto;
 margin: -10px 0px 0px -10px;
-width: 1260px;
+width: 1366px;
 display: block;
 height: 64px;
 background: rgb(36, 46, 60)repeat-x 0 0;

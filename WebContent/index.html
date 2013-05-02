@@ -6,23 +6,40 @@
 
 	<title>Lista de Papel</title>
 	
-	<link type='text/css' href='css/login2.css' rel='stylesheet'>
+	<link type='text/css' href='css/login.css' rel='stylesheet'>
 	
 </head>
 	<body>
+		
+		<header>
+			<div id="cabecalho">
+				<div id="logo">
+					<h3>Lista de Papel</h3>
+				</div>
+				<nav>
+					<ul class='nav'>
+						<li>
+							<a href="cadastro.html">Cadastrar</a>
+						</li>
+						<li>
+							<a href="#">Sobre</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		
 	<form action="FazerLogin" method="post">	   
-	    <input type="hidden" name="login">
+	    <input type="hidden" name="tipo" value="login">
         <p>			
 			<label for='email'>E-mail</label> 
-			<input type='text' id='email' name='email' placeholder='E-mail'>
-			<span class='hint'>por exemplo, seunome@dominio.com.</span> 
+			<input type='text' id='email' name='email' placeholder='E-mail' required>
         </p>
         					
 		<label for='senha'>Senha</label> 
-		<input type='password' id='senha' name='senha' placeholder="Senha"> 		
+		<input type='password' id='senha' name='senha' placeholder="Senha" required> 		
 	        			       
 		<button>Login</button>
-		<a href="cadastro.html">Cadastrar</a> 
 
 	</form>
 	
