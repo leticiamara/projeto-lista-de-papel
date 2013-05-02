@@ -15,9 +15,10 @@ public class Tarefa {
 	
 	@Column
 	private String nome;
+	private String status;
 	@OneToOne
 	private Usuario usuario;
-	//private String status;
+	
 	
 	public void setIdTarefa(long idTarefa) {
 		this.idTarefa = idTarefa;
@@ -31,12 +32,12 @@ public class Tarefa {
 	public String getNome() {
 		return nome;
 	}
-//	public void setStatus(String status) {
-//		this.status = status;
-//	}
-//	public String getStatus() {
-//		return status;
-//	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getStatus() {
+		return status;
+	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
