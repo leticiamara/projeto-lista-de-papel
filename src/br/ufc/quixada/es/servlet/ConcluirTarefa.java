@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import br.ufc.quixada.es.DAOs.TarefaDAO;
 import br.ufc.quixada.es.modelo.Tarefa;
 
-@WebServlet("/AdiconarTarefa")
-public class AdicionarTarefa extends HttpServlet {
+@WebServlet("/ConcluirTarefa")
+public class ConcluirTarefa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)	throws ServletException, IOException {		
 		this.doGet(req, resp);
@@ -24,17 +24,20 @@ public class AdicionarTarefa extends HttpServlet {
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String nomeTarefa = request.getParameter("nome");
-		Tarefa tarefa = new Tarefa();
-		tarefa.setNome(nomeTarefa);
-		tarefa.setStatus("to");
-		
-		//Salvando tarefa recebida no Banco
+		String id = request.getParameter("id");
 		TarefaDAO daoTarefa = new TarefaDAO();
-		daoTarefa.insert(tarefa);
-		
+		long idTarefa = Long.parseLong(id);
+		Tarefa tarefa = daoTarefa.selectTarefaById(idTarefa);
+		if(tarefa.getStatus().equals("to")){
+			tarefa.setStatus("done");
+			daoTarefa.update(tarefa);
+		}else {
+			tarefa.setStatus("to");
+			daoTarefa.update(tarefa);
+		}
 		PrintWriter out = response.getWriter();
-		out.write(""+tarefa.getIdTarefa());
+		out.write(""+tarefa.getStatus());
+
 	}
 
 	@Override

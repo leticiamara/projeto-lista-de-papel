@@ -10,10 +10,33 @@
 	<script src='javascripts/tarefas.js' type='text/javascript'></script>
 </head>
 	<body>
+			<header>
+			<div id="cabecalho">
+				<div id="logo">
+					<h3>Lista de Papel</h3>
+				</div>
+				<nav>
+					<ul class='nav'>
+						<li>
+							<a href="#">Logout</a>
+						</li>
+						<li>
+							<a href="#">Sobre</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<br/><br/><br/><br/>
 		<div class="todo">
-			<h2>Lista de Papel</h2>
-			<input type="text" id="tarefa">
+			<h2>Para Fazer</h2>
+			<input type="text" placeholder="Digite sua tarefa aqui..." id="tarefa" autofocus>
 			<div id="tarefa-list">
+			</div>
+		</div>
+		<div class="done">
+			<h2>Feito</h2>
+			<div id="tarefa-concluida-list">
 			</div>
 		</div>
 	</body>
