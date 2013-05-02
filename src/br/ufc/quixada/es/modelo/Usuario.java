@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.UniqueConstraint;
 
 
 @Entity
@@ -20,7 +21,7 @@ public class Usuario {
 		
 	@Column
 	private String nome;
-	@Column
+	@Column(unique=true)	
 	private String email;
 	@Column
 	private String senha;	

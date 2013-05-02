@@ -71,6 +71,9 @@ div.todo h2 {
 	visibility: hidden;
 }
 
+ header{
+   float: center;
+ }
 .tarefa-item:hover .tarefa-delete {
 	visibility: visible;
 }
