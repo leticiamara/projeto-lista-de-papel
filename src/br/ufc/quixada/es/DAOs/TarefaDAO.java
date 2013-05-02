@@ -11,12 +11,15 @@ import org.hibernate.criterion.Restrictions;
 
 import br.ufc.quixada.es.modelo.Tarefa;
 import br.ufc.quixada.es.persistencia.CriarTabelas;
+import br.ufc.quixada.es.persistencia.PreparaSessao;
 
 public class TarefaDAO {
 	
+	private static Session sessao;
+	
 	public boolean insert(Tarefa tarefa){
 		boolean inserir = false;
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		
 		try{
 			Transaction trasaction = sessao.beginTransaction();
@@ -37,7 +40,7 @@ public class TarefaDAO {
 	public boolean delete(Tarefa tarefa) {
 		
 		boolean deletar = false;
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		
 		try{
 			Transaction trasaction = sessao.beginTransaction();
@@ -62,7 +65,7 @@ public class TarefaDAO {
 	public boolean update(Tarefa novoTarefa) {
 		
 		boolean atualizar = false;
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		
 		try{Transaction trasaction = sessao.beginTransaction();
 		
@@ -86,7 +89,7 @@ public class TarefaDAO {
 	}
 
 	public Tarefa selectUnicoRecurso(String nomeTarefa){
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		Transaction trasaction = sessao.beginTransaction();
 			
 		Criteria criteria = sessao.createCriteria(Tarefa.class);
@@ -102,7 +105,7 @@ public class TarefaDAO {
 	}
 	
 	public Tarefa selectTarefaById(long idTarefa){
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		Transaction trasaction = sessao.beginTransaction();
 			
 		Criteria criteria = sessao.createCriteria(Tarefa.class);
@@ -118,7 +121,7 @@ public class TarefaDAO {
 	}
 	
 	public List<Tarefa> select() {
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		Transaction trasaction = sessao.beginTransaction();
 			
 		Criteria criteria = sessao.createCriteria(Tarefa.class);
@@ -132,7 +135,7 @@ public class TarefaDAO {
 	}
 	
 	public List<Tarefa> selectDone(){
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		Transaction trasaction = sessao.beginTransaction();
 		
 		Criteria criteria = sessao.createCriteria(Tarefa.class);
@@ -148,7 +151,7 @@ public class TarefaDAO {
 	}
 	
 	public List<Tarefa> selectTo(){
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		Transaction trasaction = sessao.beginTransaction();
 		
 		Criteria criteria = sessao.createCriteria(Tarefa.class);
