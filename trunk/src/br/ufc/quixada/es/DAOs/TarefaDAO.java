@@ -10,6 +10,7 @@ import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
 
 import br.ufc.quixada.es.modelo.Tarefa;
+import br.ufc.quixada.es.modelo.Usuario;
 import br.ufc.quixada.es.persistencia.CriarTabelas;
 import br.ufc.quixada.es.persistencia.PreparaSessao;
 
@@ -181,6 +182,15 @@ public class TarefaDAO {
 		sessao.close();
 		
 		return tarefas; 
+	}
+	
+	public static List<Tarefa> retornaTarefasDoUsuario(Usuario usuario){
+		sessao = (Session) PreparaSessao.pegarSessao();
+		
+		List<Tarefa> tarefas =  sessao.createCriteria(Tarefa.class).add(Restrictions.eq("usuario", usuario)).list();
+		
+		//sessao.close();
+		return tarefas;
 	}
 	
 				

@@ -25,9 +25,8 @@ public class FazerLogin extends HttpServlet {
 		String senhaUsuario = request.getParameter("senha");
 		
 		HttpSession session = request.getSession();
-		Usuario us = (Usuario)session.getAttribute("USUARIO");
 		UsuarioDAO usDAO = new UsuarioDAO();
-		us = usDAO.selectUnicoUsuario(emailUsuario);
+		Usuario us = usDAO.selectUnicoUsuario(emailUsuario);
 		
 		if(us.getSenha().equals(senhaUsuario)){
 			session.setAttribute("USUARIO", us);
@@ -41,7 +40,7 @@ public class FazerLogin extends HttpServlet {
 		
 		
 		HttpSession session = request.getSession();		
-		session.removeAttribute((String) session.getAttribute("USUARIO"));
+		session.removeAttribute("USUARIO");
 		
 		RequestDispatcher rd = request.getRequestDispatcher("index.html");
 		rd.forward(request, response);

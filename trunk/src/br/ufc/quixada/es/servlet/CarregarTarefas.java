@@ -10,10 +10,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import br.ufc.quixada.es.DAOs.TarefaDAO;
+import br.ufc.quixada.es.DAOs.UsuarioDAO;
 import br.ufc.quixada.es.modelo.Tarefa;
+import br.ufc.quixada.es.modelo.Usuario;
 import br.ufc.quixada.es.util.DataSerializer;
+import br.ufc.quixada.es.util.EstrategiaExclusaoJSON;
 
 @WebServlet("/CarregarTarefas")
 public class CarregarTarefas extends HttpServlet {
@@ -27,10 +34,13 @@ public class CarregarTarefas extends HttpServlet {
 
     	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    		TarefaDAO dao = new TarefaDAO();
-    		List<Tarefa> listaTarefas = dao.select();
-
-    		String responseData = DataSerializer.getInstance().converterParaJson(listaTarefas);
+    		HttpSession session = request.getSession();
+    		Usuario user = (Usuario) session.getAttribute("USUARIO");
+    		UsuarioDAO daoUsuario = new UsuarioDAO();
+    		List<Tarefa> listaTarefas = daoUsuario.selecionarTarefasDoUsuario(user);
+    	    Gson gson = new GsonBuilder().setExclusionStrategies( new EstrategiaExclusaoJSON() ).create();  
+    		String responseData = gson.toJson(listaTarefas);
+    		System.out.println(responseData);
     		PrintWriter out = response.getWriter();
     		out.write(responseData);
     	}

@@ -1,15 +1,19 @@
 package br.ufc.quixada.es.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.ufc.quixada.es.DAOs.TarefaDAO;
+import br.ufc.quixada.es.DAOs.UsuarioDAO;
 import br.ufc.quixada.es.modelo.Tarefa;
+import br.ufc.quixada.es.modelo.Usuario;
 
 @WebServlet("/DeletarTarefa")
 public class DeletarTarefa extends HttpServlet {
@@ -22,18 +26,20 @@ public class DeletarTarefa extends HttpServlet {
 	}
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		HttpSession session = request.getSession();
+		
 		String id = request.getParameter("id");
 		
 		/*
-		 * Salvando tarefa recebida no Banco
+		 * Deletando tarefa recebida no Banco
 		 */
 		TarefaDAO daoTarefa = new TarefaDAO();
-		long idTarefa = Long.parseLong(id);
-		Tarefa tarefa = daoTarefa.selectTarefaById(idTarefa);
 		
+		long idTarefa = Long.parseLong(id);
+		
+		Tarefa tarefa = daoTarefa.selectTarefaById(idTarefa);
 		daoTarefa.delete(tarefa);
-
+		
 	}
 
 	@Override

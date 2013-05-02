@@ -26,8 +26,16 @@ public class DataSerializer {
 	}
 
 	public String converterParaJson(List<Tarefa> tarefas) throws JsonGenerationException, JsonMappingException, IOException {
-		ObjectMapper mapper = new ObjectMapper(); //ObjectMapper é uma classe da biblioteca Jackson
-		return mapper.writeValueAsString(tarefas); //Este metodo irá retornar o JSON da variável "tarefas".
+		try {
+			System.out.println("ENTROU NO METODO DO JSON");
+			ObjectMapper mapper = new ObjectMapper(); //ObjectMapper é uma classe da biblioteca Jackson
+			return mapper.writeValueAsString(tarefas); //Este metodo irá retornar o JSON da variável "tarefas".
+		} catch (Exception e) {
+			System.out.println(e.getStackTrace());
+			return "EXCEPTION";
+		}
+		
+		
 	}
 
 	public Tarefa converterJsonParaTarefa(String json) throws JsonGenerationException, JsonMappingException, IOException {

@@ -9,14 +9,18 @@ import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
 
+import br.ufc.quixada.es.modelo.Tarefa;
 import br.ufc.quixada.es.modelo.Usuario;
 import br.ufc.quixada.es.persistencia.CriarTabelas;
+import br.ufc.quixada.es.persistencia.PreparaSessao;
 
 public class UsuarioDAO {
+	
+	private static Session sessao;
 
 	public boolean insert(Usuario usuario){
 		boolean inserir = false;
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		
 		try{
 			Transaction trasaction = sessao.beginTransaction();
@@ -37,7 +41,7 @@ public class UsuarioDAO {
 	public boolean delete(Usuario usuario) {
 		
 		boolean deletar = false;
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		
 		try{
 			Transaction trasaction = sessao.beginTransaction();
@@ -62,7 +66,7 @@ public class UsuarioDAO {
 	public boolean update(Usuario novoUsuario) {
 		
 		boolean atualizar = false;
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		
 		try{Transaction trasaction = sessao.beginTransaction();
 		
@@ -86,7 +90,7 @@ public class UsuarioDAO {
 	}
 	
 	public Usuario selectUnicoUsuario(String email){
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		Transaction trasaction = sessao.beginTransaction();
 			
 		Criteria criteria = sessao.createCriteria(Usuario.class);
@@ -102,7 +106,7 @@ public class UsuarioDAO {
 	}
 
 	public Usuario selectUsuarioById(long idUsuario){
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		Transaction trasaction = sessao.beginTransaction();
 			
 		Criteria criteria = sessao.createCriteria(Usuario.class);
@@ -118,7 +122,7 @@ public class UsuarioDAO {
 	}
 
 	public List<Usuario> select() {
-		Session sessao = CriarTabelas.prepararSessao();
+		sessao = (Session) PreparaSessao.pegarSessao();
 		Transaction trasaction = sessao.beginTransaction();
 			
 		Criteria criteria = sessao.createCriteria(Usuario.class);
@@ -129,6 +133,66 @@ public class UsuarioDAO {
 		sessao.close();
 		
 		return usuarios;
+	}
+	
+	public Tarefa selectTarefaUsuarioById(long idTarefa, long idUsuario){
+		sessao = (Session) PreparaSessao.pegarSessao();
+		Transaction trasaction = sessao.beginTransaction();
+		Tarefa tarefa = new Tarefa();
+			
+		Criteria criteria = sessao.createCriteria(Tarefa.class);
+		criteria.add(Restrictions.eq("id", idUsuario));
+		
+		Usuario usuario = (Usuario) criteria.uniqueResult();
+		List<Tarefa> listaTarefas = usuario.getTarefas();
+		
+		for (Tarefa tarefa2 : listaTarefas) {
+			if(tarefa2.getIdTarefa() == idTarefa){
+				tarefa = tarefa2;
+			}
+		}
+
+		trasaction.commit();
+		
+		sessao.close();
+		
+		return tarefa;
+	}
+	
+	public void excluirTarefaDeUsuario(long idTarefa, long idUsuario){
+		sessao = (Session) PreparaSessao.pegarSessao();
+		
+		Transaction trasaction = sessao.beginTransaction();
+		
+			
+		Criteria criteria = sessao.createCriteria(Usuario.class);
+		criteria.add(Restrictions.eq("id", idUsuario));
+		
+		Usuario usuario = (Usuario) criteria.uniqueResult();
+		List<Tarefa> listaTarefas = usuario.getTarefas();
+		
+//		for (Tarefa tarefa2 : listaTarefas) {
+//			if(tarefa2.getIdTarefa() == idTarefa){
+//				listaTarefas.remove(tarefa2);
+//			}
+//		}
+
+		UsuarioDAO dao = new UsuarioDAO();
+		dao.update(usuario);
+		
+		trasaction.commit();
+		
+		sessao.close();
+	}
+	
+	public List<Tarefa> selecionarTarefasDoUsuario(Usuario usuario){
+		sessao = (Session) PreparaSessao.pegarSessao();
+		
+		//Transaction trasaction = sessao.beginTransaction();
+		List<Tarefa> listaTarefas =  sessao.createCriteria(Tarefa.class).add(Restrictions.eq("usuario", usuario)).list();
+		sessao.close();
+		
+		return listaTarefas;
 	}
 
 

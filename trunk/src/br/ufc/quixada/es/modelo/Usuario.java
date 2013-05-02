@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -25,8 +26,8 @@ public class Usuario {
 	private String email;
 	@Column
 	private String senha;	
-	@OneToMany(mappedBy="usuario")
-	private Set<Tarefa> tarefas;
+	@OneToMany(mappedBy="usuario",fetch=FetchType.EAGER)
+	private List<Tarefa> tarefas;
 	
 	public long getIdUsuario() {
 		return idUsuario;
@@ -52,12 +53,11 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public void setTarefas(Set<Tarefa> tarefas) {
-		this.tarefas = tarefas;
-	}
-	public Set<Tarefa> getTarefas() {
+	public List<Tarefa> getTarefas() {
 		return tarefas;
 	}
-		
+	public void setTarefas(List<Tarefa> tarefas) {
+		this.tarefas = tarefas;
+	}
 					
 }

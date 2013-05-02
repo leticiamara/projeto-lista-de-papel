@@ -22,13 +22,13 @@ public class ClassePrincipal {
 		TarefaDAO dao = new TarefaDAO();		
 				 		
 		Usuario u = new Usuario();
-		u.setNome("suelhy");
-		u.setEmail("suelhy91@gmail.com");
+		u.setNome("Rodrigo");
+		u.setEmail("rodrigogirao7@gmail.com");
 		u.setSenha("1234");
 		Tarefa t = new Tarefa();
 		t.setNome("Fazer questoes de concorrencia");
-		t.setUsuario(u);
 		t.setStatus("to");
+		t.setUsuario(u);
 		
 		daoU.insert(u);
 		dao.insert(t);
