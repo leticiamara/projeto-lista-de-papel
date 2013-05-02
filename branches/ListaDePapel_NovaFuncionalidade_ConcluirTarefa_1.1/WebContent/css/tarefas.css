@@ -61,8 +61,23 @@ div.todo h2 {
 .tarefa-delete {
 	width: 25px;
 	height: 25px;
+	margin: -20px 10px;
 
 	background-image: url("../imagens/delete12.png");
+	background-repeat: no-repeat;
+
+	display: block;
+	float: right;
+
+	visibility: hidden;
+}
+
+.tarefa-concluir {
+	width: 25px;
+	height: 25px;
+	margin: -20px;
+
+	background-image: url("../imagens/delete.gif");
 	background-repeat: no-repeat;
 
 	display: block;
@@ -75,8 +90,15 @@ div.todo h2 {
 	visibility: visible;
 }
 
+.tarefa-item:hover .tarefa-concluir {
+	visibility: visible;
+}
 .tarefa-id {
+	width: 0px;
+	height: 0px;
 visibility: hidden;
+display: block;
+	clear: both;
 }
 
 .tarefa-item, .tarefa-texto, .tarefa-delete {
