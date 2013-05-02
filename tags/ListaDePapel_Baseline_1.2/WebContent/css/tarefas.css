@@ -1,0 +1,185 @@
+
+html {
+	font-family: helvetica, colibri, tahoma, sans-serif;
+	color: #008080;
+	background-image: url("../imagens/noise.png");
+	text-shadow: 0.1em 0.1em 0.1em #eee;
+	background-color: #B2CCFF;
+}
+
+div.todo {
+	width: 37em;
+	border: 1px solid #eee;
+	margin: auto;
+	float:left;
+	box-shadow: 0.5em 0.5em 0.5em #eee;
+	background-color: white;
+}
+
+div.done h2 {
+	text-align:center;
+	color: #000000;
+}
+
+div.done {
+	width: 37em;
+	border: 1px solid #eee;
+	margin: auto;
+	float:right;
+	box-shadow: 0.5em 0.5em 0.5em #eee;
+	background-color: white;
+}
+
+div.todo h2 {
+    text-align:center;
+	color: #000000;
+}
+
+#tarefa, .tarefa-edit {
+	font-size: 1.2em;
+	
+}
+
+#tarefa {
+	width: 28em;
+	text-align:center;	
+	margin-left: 25px;
+	margin-bottom: 15px;
+}
+
+input:focus {
+border-color: #35861B;
+box-shadow: 0 0 5px #35861B;
+outline: none;
+}
+
+.tarefa-edit {
+	width: 27em;
+}
+
+
+.tarefa-item {
+	padding: 1em;
+	vertical-align: middle;
+}
+
+.tarefa-item:hover {
+	background-color: #eee;
+}
+
+.tarefa-texto {
+	display: block;
+	float: left;
+}
+
+.clear {
+	clear: both;
+}
+
+.tarefa-delete {
+	width: 25px;
+	height: 25px;
+	margin: -20px 10px;
+
+	background-image: url("../imagens/delete12.png");
+	background-repeat: no-repeat;
+
+	display: block;
+	float: right;
+
+	visibility: hidden;
+}
+
+.tarefa-concluir {
+	width: 25px;
+	height: 25px;
+	margin: -20px;
+
+	background-image: url("../imagens/IconeCheckC.png");
+	background-repeat: no-repeat;
+
+	display: block;
+	float: right;
+
+	visibility: hidden;
+}
+.tarefa-item:hover {
+	color: #EEEEEE;
+	background-color: #008080; 
+}
+
+.tarefa-item:hover .tarefa-delete {
+	visibility: visible;
+}
+
+.tarefa-item:hover .tarefa-concluir {
+	visibility: visible;
+}
+.tarefa-id {
+	width: 0px;
+	height: 0px;
+visibility: hidden;
+display: block;
+	clear: both;
+}
+
+.tarefa-item, .tarefa-texto, .tarefa-delete {
+	/* border: 1px solid black; */
+}
+header {
+display: block;
+position: fixed;
+
+}
+
+#cabecalho{
+list-style:none;
+border:1px solid #c0c0c0;
+margin: auto;
+margin: -10px 0px 0px -10px;
+width: 1260px;
+display: block;
+height: 64px;
+background: rgb(36, 46, 60)repeat-x 0 0;
+background-image: url("../imagens/noise.png");
+}
+
+header #logo {
+margin: 0px 0 0 34px;
+float: left;
+color: #FFFFFF;
+text-shadow: 0 1px 0 #E6E8FA;
+font-style: normal;
+font-size: 23px;
+}
+
+header nav {
+margin: 16px 0 0 34px;
+float: right;
+}
+
+ul {
+list-style: none;
+}
+
+header nav ul li {
+float: left;
+margin: 0px 0px 0px 10px;
+}
+
+header nav ul li a {
+display: block;
+margin: 0 8px 0 0;
+width: 100px;
+height: 25px;
+line-height: 2.2;
+border-radius: 9px;
+color:#FFFFFF;
+text-shadow: 0 1px 0 #E6E8FA;
+text-align: center;
+font-size: 15px;
+float: left;
+}
+a {
+text-decoration: none;
+}
