@@ -28,7 +28,7 @@ public class ClassePrincipal {
 		Tarefa t = new Tarefa();
 		t.setNome("Fazer questoes de concorrencia");
 		t.setUsuario(u);
-		//t.setStatus("to");
+		t.setStatus("to");
 		
 		daoU.insert(u);
 		dao.insert(t);

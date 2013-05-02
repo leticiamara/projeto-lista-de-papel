@@ -1,5 +1,6 @@
 package br.ufc.quixada.es.servlet;
 
+import java.beans.Encoder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -29,7 +30,7 @@ public class CarregarTarefas extends HttpServlet {
     		TarefaDAO dao = new TarefaDAO();
     		List<Tarefa> listaTarefas = dao.select();
 
-    		String responseData = DataSerializer.getInstance().converterParaJson(listaTarefas);   
+    		String responseData = DataSerializer.getInstance().converterParaJson(listaTarefas);
     		PrintWriter out = response.getWriter();
     		out.write(responseData);
     	}
