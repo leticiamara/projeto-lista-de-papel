@@ -24,15 +24,15 @@ $(function() {
 		var $tarefa = $("<div />")
 		.addClass("tarefa-item")
 		.append($("<div />")
+			.addClass("tarefa-id")
+			.text(id))
+		.append($("<div />")
 			.addClass("tarefa-text")
 			.text(text))
 		.append($("<div />")
 			.addClass("tarefa-delete"))
 		.append($("<div />")
-			.addClass("clear"))
-		.append($("<div />")
-			.addClass("tarefa-id")
-			.text(id));
+			.addClass("clear"));
 		$("#tarefa-list").append($tarefa);
 		$(".tarefa-delete").click(onTarefaDeleteClick);
 		$(".tarefa-item").click(onTarefaItemClick);
@@ -72,7 +72,7 @@ $(function() {
 			console.log("onTarefaClick  id: ", id);
 			
 			var content = "<input type='text' class='tarefa-edit' value='" +
-			text + "'>" + "<div class='tarefa-id'>" + id + "</div>";
+			text + "'>" + "<div class='tarefa-id'>" + id + "</div>\"";
 			$lastClicked.html(content);
 			$(".tarefa-edit").keydown(onTarefaEditKeydown);
 		}
