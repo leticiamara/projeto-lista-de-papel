@@ -1,0 +1,1 @@
+Este projeto tem a finalidade de desenvolver uma aplicação web em HTML 5 que fornece a seus usuários a funcionalidade de adicionar tarefas a serem feitas. O projeto é baseado no modelo KanBan.
