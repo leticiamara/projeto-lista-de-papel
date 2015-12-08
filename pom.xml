@@ -21,16 +21,8 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<version>2.2</version>
-				<executions>
-					<execution>
-						<id>tomcat-deploy</id>
-						<goals>
-							<goal>run-war</goal>
-						</goals>
-						<phase>package</phase>
-					</execution>
-				</executions>
-			</plugin>
+
+		 		</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
