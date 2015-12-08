@@ -25,7 +25,7 @@
 					<execution>
 						<id>tomcat-deploy</id>
 						<goals>
-							<goal>deploy</goal>
+							<goal>run-war</goal>
 						</goals>
 						<phase>package</phase>
 					</execution>
